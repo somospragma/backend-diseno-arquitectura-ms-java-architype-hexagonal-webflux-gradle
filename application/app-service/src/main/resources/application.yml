@@ -1,0 +1,90 @@
+spring:
+  application:
+    name: ${SERVICE_NAME:accounts-service}
+  r2dbc:
+    url: ${DB_URL:r2dbc:postgresql://localhost:5432/accounts_db}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    pool:
+      initial-size: 5
+      max-size: 20
+      max-idle-time: 30m
+
+accounts:
+  service-name: ${SERVICE_NAME:accounts-service}
+  max-page-size: 100
+
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+  netty:
+    connection-timeout: 30s
+    idle-timeout: 60s
+    max-initial-line-length: 8192
+    max-header-size: 16384
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when-authorized
+      group:
+        readiness:
+          include: readinessState,r2dbc
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+
+credit-score:
+  base-url: ${CREDIT_SCORE_URL:https://credit-score.internal}
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 30s
+        failureRateThreshold: 50
+    instances:
+      creditScore:
+        baseConfig: default
+  retry:
+    instances:
+      creditScore:
+        maxAttempts: 3
+        waitDuration: 200ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        randomizedWaitFactor: 0.5
+        retryExceptions:
+          - java.io.IOException
+          - java.util.concurrent.TimeoutException
+  bulkhead:
+    instances:
+      creditScore:
+        maxConcurrentCalls: 20
+        maxWaitDuration: 50ms
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    root: INFO
+    co.com.pragma: DEBUG
+    reactor.netty: INFO

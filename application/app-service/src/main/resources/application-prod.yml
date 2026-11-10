@@ -1,0 +1,13 @@
+spring:
+  r2dbc:
+    pool:
+      max-size: 50
+logging:
+  level:
+    root: WARN
+    co.com.pragma: INFO
+    reactor.netty: WARN
+management:
+  tracing:
+    sampling:
+      probability: 0.1
