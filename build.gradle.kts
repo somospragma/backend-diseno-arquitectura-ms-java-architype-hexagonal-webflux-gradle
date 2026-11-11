@@ -105,8 +105,9 @@ subprojects {
 // SonarQube — análisis estático (configurado a nivel root)
 sonar {
     properties {
-        property("sonar.host.url", System.getenv("SONAR_HOST_URL") ?: "")
-        property("sonar.token", System.getenv("SONAR_TOKEN") ?: "")
+        // Solo se fijan si vienen del entorno: un valor vacio rompe el scanner.
+        System.getenv("SONAR_HOST_URL")?.takeIf { it.isNotBlank() }?.let { property("sonar.host.url", it) }
+        System.getenv("SONAR_TOKEN")?.takeIf { it.isNotBlank() }?.let { property("sonar.token", it) }
         property(
             "sonar.coverage.exclusions",
             listOf(
