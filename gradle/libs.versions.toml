@@ -91,7 +91,7 @@ reactor-grpc-stub = { module = "com.salesforce.servicelibs:reactor-grpc-stub", v
 tomcat-annotations-api = { module = "org.apache.tomcat:annotations-api", version = "6.0.53" }
 
 # Testcontainers
-testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "1.20.4" }
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version = "2.0.5" }
 testcontainers-junit = { module = "org.testcontainers:junit-jupiter" }
 testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
 testcontainers-localstack = { module = "org.testcontainers:localstack" }
