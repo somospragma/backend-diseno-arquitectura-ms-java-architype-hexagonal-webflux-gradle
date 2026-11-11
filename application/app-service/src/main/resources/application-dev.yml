@@ -1,0 +1,11 @@
+spring:
+  r2dbc:
+    pool:
+      max-size: 5
+management:
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    reactor.netty: DEBUG

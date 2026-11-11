@@ -1,0 +1,18 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
+apply(plugin = "java-library")
+apply(plugin = "org.springframework.boot")
+apply(plugin = "io.spring.dependency-management")
+
+tasks.named<BootJar>("bootJar") { enabled = false }
+tasks.named<Jar>("jar") { enabled = true }
+
+dependencies {
+    implementation(project(":domain:model"))
+    implementation(project(":domain:ports"))
+    implementation(libs.boot.starter.webflux)
+
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
+    testRuntimeOnly(libs.junit.platform.launcher)
+}

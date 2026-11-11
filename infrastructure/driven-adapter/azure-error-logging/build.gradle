@@ -1,6 +1,0 @@
-dependencies {
-    implementation project(':domain')
-    implementation 'com.microsoft.azure:applicationinsights-spring-boot-starter:2.6.4'
-    implementation 'com.microsoft.azure:applicationinsights-logging-logback:2.6.4'
-    implementation 'com.google.code.gson:gson:2.11.0'
-}

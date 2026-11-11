@@ -1,5 +1,0 @@
-dependencies {
-    implementation project(':domain')
-    implementation 'com.azure:azure-messaging-servicebus:7.17.7'
-    implementation 'com.azure.spring:spring-cloud-azure-starter-keyvault:5.22.0'
-}
