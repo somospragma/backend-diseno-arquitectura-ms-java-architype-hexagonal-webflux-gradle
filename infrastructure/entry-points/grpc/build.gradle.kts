@@ -55,8 +55,9 @@ protobuf {
     generateProtoTasks {
         all().forEach { task ->
             task.plugins {
-                id("grpc")
-                id("reactor")
+                // Desde el plugin 0.10 este bloque puede correr mas de una vez por tarea: maybeCreate no duplica.
+                maybeCreate("grpc")
+                maybeCreate("reactor")
             }
         }
     }
