@@ -1,12 +1,12 @@
 [versions]
-spring-boot = "4.1.2"
+spring-boot = "4.2.0"
 spring-dependency-management = "1.1.7"
 lombok = "1.18.48"
 mapstruct = "1.6.3"
 archunit = "1.5.1"
-springdoc = "3.2.0"
-reactor-test = "3.8.8"
-blockhound = "1.0.18.RELEASE"
+springdoc = "3.2.1"
+reactor-test = "3.9.0"
+blockhound = "1.0.19.RELEASE"
 resilience4j = "2.4.0"
 pitest = "1.19.0"
 pitest-junit5 = "1.2.1"
@@ -68,7 +68,7 @@ caffeine = { module = "com.github.ben-manes.caffeine:caffeine" }
 reactor-extra = { module = "io.projectreactor.addons:reactor-extra" }
 
 # AWS SDK v2 (Dynamo, SQS, SNS) + Spring Cloud AWS
-awssdk-bom = { module = "software.amazon.awssdk:bom", version = "2.59.0" }
+awssdk-bom = { module = "software.amazon.awssdk:bom", version = "2.59.9" }
 awssdk-dynamodb = { module = "software.amazon.awssdk:dynamodb" }
 awssdk-dynamodb-enhanced = { module = "software.amazon.awssdk:dynamodb-enhanced" }
 awssdk-sqs = { module = "software.amazon.awssdk:sqs" }
@@ -79,7 +79,7 @@ reactor-kafka = { module = "io.projectreactor.kafka:reactor-kafka", version = "1
 spring-kafka = { module = "org.springframework.kafka:spring-kafka" }
 
 # gRPC (server/client reactivo con Reactor gRPC)
-grpc-bom = { module = "io.grpc:grpc-bom", version = "1.85.1" }
+grpc-bom = { module = "io.grpc:grpc-bom", version = "1.86.0" }
 grpc-stub = { module = "io.grpc:grpc-stub" }
 grpc-protobuf = { module = "io.grpc:grpc-protobuf" }
 grpc-netty-shaded = { module = "io.grpc:grpc-netty-shaded" }
@@ -107,7 +107,7 @@ archunit-junit5 = { module = "com.tngtech.archunit:archunit-junit5", version.ref
 # Parches de seguridad (CVE) de transitivas que el BOM de Spring Boot NO gestiona.
 # Se aplican como constraints en el build raiz: fijan la version solo si la libreria
 # ya llega al grafo (kafka -> lz4/snappy, gRPC -> guava, driver Postgres -> scram).
-lz4-java = { module = "at.yawk.lz4:lz4-java", version = "1.14.0" }
+lz4-java = { module = "at.yawk.lz4:lz4-java", version = "1.14.1" }
 snappy-java = { module = "org.xerial.snappy:snappy-java", version = "1.1.10.12" }
 guava = { module = "com.google.guava:guava", version = "33.8.0-jre" }
 scram-client = { module = "com.ongres.scram:scram-client", version = "3.4" }
