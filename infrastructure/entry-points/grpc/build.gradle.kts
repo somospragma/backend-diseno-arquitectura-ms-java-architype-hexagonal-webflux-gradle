@@ -44,7 +44,7 @@ protobuf {
     plugins {
         // Plugin de gRPC Java (stubs bloqueantes/async estandar).
         id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:1.85.1"
+            artifact = "io.grpc:protoc-gen-grpc-java:1.86.0"
         }
         // Plugin de Reactor gRPC (stubs reactivos Mono/Flux). El protobuf-gradle-plugin
         // resuelve el jar ejecutable; no se pone classifier manual.
